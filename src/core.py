@@ -22,22 +22,23 @@ def calculate_error_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict:
         'std_error': np.std(y_true - y_pred)
     }
 
-def plot_error_analysis(y_true: np.ndarray, y_pred: np.ndarray, title: str, output_path: Path):
+def plot_error_analysis(y_true: np.ndarray, y_pred: np.ndarray, title: str, output_path: Path, plot: bool = False):
     """Plot error analysis """
-    fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    if plot:
+        fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
     
-    axes[0].plot(y_true, label="Actual", color="#4A90A4", linewidth=1.2)
-    axes[0].plot(y_pred, label="Predicted", color="#D4A574", linewidth=1.2)
-    axes[0].set_ylabel("Value")
-    axes[0].legend(loc='best')
+        axes[0].plot(y_true, label="Actual", color="#4A90A4", linewidth=1.2)
+        axes[0].plot(y_pred, label="Predicted", color="#D4A574", linewidth=1.2)
+        axes[0].set_ylabel("Value")
+        axes[0].legend(loc='best')
     
-    errors = y_true - y_pred
-    axes[1].plot(errors, color="#8B6F9E", linewidth=1.2)
-    axes[1].axhline(0, color='k', linestyle='--', linewidth=0.8)
-    axes[1].set_xlabel("Time")
-    axes[1].set_ylabel("Error")
+        errors = y_true - y_pred
+        axes[1].plot(errors, color="#8B6F9E", linewidth=1.2)
+        axes[1].axhline(0, color='k', linestyle='--', linewidth=0.8)
+        axes[1].set_xlabel("Time")
+        axes[1].set_ylabel("Error")
     
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches='tight', facecolor='white')
-    plt.close()
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=100, bbox_inches='tight', facecolor='white')
+        plt.close()
 

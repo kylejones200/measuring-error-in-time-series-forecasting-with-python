@@ -33,19 +33,20 @@ def plot_error_analysis(
 ):
     errors = (actual - predicted).to_list()
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    if plot:
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
-    ax1.plot(actual.to_list(),    label="Actual",    color="#4A90A4", linewidth=1.2)
-    ax1.plot(predicted.to_list(), label="Predicted", color="#D4A574", linewidth=1.2)
-    ax1.set_ylabel("Value")
-    ax1.set_title(title)
-    ax1.legend(loc="best")
+        ax1.plot(actual.to_list(),    label="Actual",    color="#4A90A4", linewidth=1.2)
+        ax1.plot(predicted.to_list(), label="Predicted", color="#D4A574", linewidth=1.2)
+        ax1.set_ylabel("Value")
+        ax1.set_title(title)
+        ax1.legend(loc="best")
 
-    ax2.plot(errors, color="#8B6F9E", linewidth=1.2)
-    ax2.axhline(0, color="k", linestyle="--", linewidth=0.8)
-    ax2.set_xlabel("Time")
-    ax2.set_ylabel("Error")
+        ax2.plot(errors, color="#8B6F9E", linewidth=1.2)
+        ax2.axhline(0, color="k", linestyle="--", linewidth=0.8)
+        ax2.set_xlabel("Time")
+        ax2.set_ylabel("Error")
 
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches="tight", facecolor="white")
-    plt.close()
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=100, bbox_inches="tight", facecolor="white")
+        plt.close()
