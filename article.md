@@ -112,7 +112,7 @@ Try 'em all! Different methods are useful for different things. I usually apply 
 - MAPE is interpretable as a percentage but struggles with small or zero values.
 - MASE is robust, scale-independent, and useful for comparing models against a baseline.
 
-#### **Next Steps**
+#### Next Steps
 Measuring error is how we know if your forecast models are actualy valuable. Metrics like MAE, MSE, MAPE, and MASE provide complementary insights, each with its own strengths and weaknesses. You can easily implement these metrics in python with the sklearn library.
 
 #### Beehive Example (continued)
