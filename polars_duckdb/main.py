@@ -9,7 +9,6 @@ import numpy as np
 import polars as pl
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
 from core import calculate_error_metrics, plot_error_analysis
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
