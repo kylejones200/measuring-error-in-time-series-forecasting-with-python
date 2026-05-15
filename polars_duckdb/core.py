@@ -7,12 +7,11 @@ import duckdb
 import polars as pl
 import matplotlib.pyplot as plt
 from pathlib import Path
-from typing import Dict
 
 
-def calculate_error_metrics(actual: pl.Series, predicted: pl.Series) -> Dict[str, float]:
+def calculate_error_metrics(actual: pl.Series, predicted: pl.Series) -> dict[str, float]:
     """Compute MAE, RMSE, MAPE, mean error, and std error via a single DuckDB query."""
-    df = pl.DataFrame({"actual": actual, "predicted": predicted})
+    pl.DataFrame({"actual": actual, "predicted": predicted})
     return duckdb.sql("""
         SELECT
             AVG(POWER(actual - predicted, 2))                            AS mse,

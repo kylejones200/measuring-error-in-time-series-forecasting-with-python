@@ -1,9 +1,7 @@
 """Core functions for measuring error in time series forecasting."""
 
 import numpy as np
-import pandas as pd
 from pathlib import Path
-from typing import Dict
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
 import matplotlib.pyplot as plt
 import logging
@@ -11,7 +9,7 @@ import logging
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-def calculate_error_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict:
+def calculate_error_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     """Calculate comprehensive error metrics."""
     return {
         'mse': mean_squared_error(y_true, y_pred),

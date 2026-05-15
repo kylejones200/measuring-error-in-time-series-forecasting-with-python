@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Measuring forecast error — Polars + DuckDB rewrite (no sklearn.metrics)."""
 
-import sys
 import argparse
 import yaml
 import logging
