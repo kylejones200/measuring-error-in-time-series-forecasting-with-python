@@ -1,21 +1,21 @@
 # Description: Short example for Measuring Error in Time Series Forecasting with Python.
 
 
-
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-from sktime.performance_metrics.forecasting import mean_absolute_error
-from sktime.performance_metrics.forecasting import mean_absolute_scaled_error
-from sktime.performance_metrics.forecasting import mean_squared_error
 import logging
+
 import numpy as np
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sktime.performance_metrics.forecasting import (
+    mean_absolute_error,
+    mean_absolute_scaled_error,
+    mean_squared_error,
+)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
-
 
 
 # Example Time Series
@@ -29,7 +29,8 @@ logger.info(f"MAE (Naive Forecast): {mae_naive:.4f}")
 
 
 def simple_moving_average(y, window_size):
-    return np.convolve(y, np.ones(window_size)/window_size, mode='valid')
+    return np.convolve(y, np.ones(window_size) / window_size, mode="valid")
+
 
 # Example Time Series
 y_true = np.array([10, 12, 14, 16, 18, 20])
@@ -38,7 +39,7 @@ window_size = 2
 y_pred_sma = simple_moving_average(y_true, window_size)
 
 # Align y_true and predictions
-y_true_trim = y_true[window_size - 1:]
+y_true_trim = y_true[window_size - 1 :]
 
 mae_sma = mean_absolute_error(y_true_trim, y_pred_sma)
 logger.info(f"MAE (Simple Moving Average): {mae_sma:.4f}")
@@ -59,6 +60,7 @@ def mean_absolute_percentage_error(y_true, y_pred):
     y_true, y_pred = np.array(y_true), np.array(y_pred)
     return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
 
+
 # Example Time Series
 y_true = np.array([10, 12, 15, 18, 20])
 y_pred = np.array([11, 13, 14, 17, 21])
@@ -72,6 +74,6 @@ mase = mean_absolute_scaled_error(y_true, y_pred, y_train=y_true)
 logger.info(f"Mean Absolute Scaled Error (MASE): {mase}")
 
 df.dropna(inplace=True)
-mae = mean_absolute_error(df['weight'], df['naive_weight'])
-mse = mean_squared_error(df['weight'], df['naive_weight'])
+mae = mean_absolute_error(df["weight"], df["naive_weight"])
+mse = mean_squared_error(df["weight"], df["naive_weight"])
 logger.info(f"Naive Forecast - MAE: {mae:.2f}, MSE: {mse:.2f}")
