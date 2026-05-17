@@ -51,3 +51,11 @@ Edit `config.yaml` to customize:
 - By default, generates synthetic forecast data.
 - MAPE can be problematic when actual values are near zero.
 - Choose metrics appropriate for your use case.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

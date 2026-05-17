@@ -35,20 +35,22 @@ def plot_error_analysis(
     plot: bool = False,
 ):
     """Plot error analysis"""
-    if plot:
-        fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    if not plot:
+        return
 
-        axes[0].plot(y_true, label="Actual", color="#4A90A4", linewidth=1.2)
-        axes[0].plot(y_pred, label="Predicted", color="#D4A574", linewidth=1.2)
-        axes[0].set_ylabel("Value")
-        axes[0].legend(loc="best")
+    fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
-        errors = y_true - y_pred
-        axes[1].plot(errors, color="#8B6F9E", linewidth=1.2)
-        axes[1].axhline(0, color="k", linestyle="--", linewidth=0.8)
-        axes[1].set_xlabel("Time")
-        axes[1].set_ylabel("Error")
+    axes[0].plot(y_true, label="Actual", color="#4A90A4", linewidth=1.2)
+    axes[0].plot(y_pred, label="Predicted", color="#D4A574", linewidth=1.2)
+    axes[0].set_ylabel("Value")
+    axes[0].legend(loc="best")
 
-        plt.tight_layout()
-        plt.savefig(output_path, dpi=100, bbox_inches="tight", facecolor="white")
-        plt.close()
+    errors = y_true - y_pred
+    axes[1].plot(errors, color="#8B6F9E", linewidth=1.2)
+    axes[1].axhline(0, color="k", linestyle="--", linewidth=0.8)
+    axes[1].set_xlabel("Time")
+    axes[1].set_ylabel("Error")
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=100, bbox_inches="tight", facecolor="white")
+    plt.close()
