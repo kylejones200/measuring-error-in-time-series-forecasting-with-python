@@ -2,6 +2,14 @@
 
 This project demonstrates various error metrics for evaluating time series forecasts.
 
+## Business context
+
+The point of time series models is accurately forecast the future. Error measurement helps us compare models, understand where they fall short, and refine forecasting strategies.
+
+<figcaption>Photo by <a class="markup--anchor markup--figure-anchor" rel="photo-creator noopener" target="_blank">Michael Anfang</a> on <a class="markup--anchor markup--figure-anchor"
+
+This article introduces common error metrics used in time series forecasting, their benefits, drawbacks, and how to compute them using Python (using sklearn). This article is all about measuring errors, not about how to create forecasts.
+
 ## Article
 
 Medium article: [Measuring Error in Time Series Forecasting with Python](https://medium.com/@kylejones_47003/measuring-error-in-time-series-forecasting-with-python-18d743a535fd)
