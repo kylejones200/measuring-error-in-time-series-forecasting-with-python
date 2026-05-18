@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 
 
-def load_config(config_path: Path = None) -> dict:
+def load_config(config_path: Path | None = None) -> dict:
     if config_path is None:
         config_path = Path(__file__).parent.parent / "config.yaml"
     with open(config_path) as f:
@@ -28,7 +28,6 @@ def main():
     parser.add_argument("--data-path", type=Path, default=None)
     parser.add_argument("--output-dir", type=Path, default=None)
     args = parser.parse_args()
-
     config = load_config(args.config)
     output_dir = (
         Path(args.output_dir)
@@ -36,7 +35,6 @@ def main():
         else Path(config["output"]["figures_dir"])
     )
     output_dir.mkdir(exist_ok=True)
-
     if args.data_path and args.data_path.exists():
         df = pl.read_csv(args.data_path)
         actual = df["actual"]
@@ -58,11 +56,9 @@ def main():
     logging.info(f"MAPE       : {metrics['mape']:.2%}")
     logging.info(f"Mean error : {metrics['mean_error']:.4f}")
     logging.info(f"Std error  : {metrics['std_error']:.4f}")
-
     plot_error_analysis(
         actual, predicted, "Forecast Error Analysis", output_dir / "error_analysis.png"
     )
-
     logging.info(f"Analysis complete. Figures saved to {output_dir}")
 
 

@@ -1,22 +1,16 @@
 # Description: Short example for Measuring Error in Time Series Forecasting with Python.
 
-
 import logging
 
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-from sktime.performance_metrics.forecasting import (
-    mean_absolute_error,
-    mean_absolute_scaled_error,
-    mean_squared_error,
-)
+from sktime.performance_metrics.forecasting import mean_absolute_scaled_error
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
-
 
 # Example Time Series
 y_true = np.array([10, 12, 13, 14, 15])

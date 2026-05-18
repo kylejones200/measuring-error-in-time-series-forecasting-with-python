@@ -1,56 +1,27 @@
 """Core functions for measuring error in time series forecasting."""
-
-import logging
 from pathlib import Path
-
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_absolute_percentage_error,
-    mean_squared_error,
-)
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(message)s")
-
+from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, mean_squared_error
 
 def calculate_error_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     """Calculate comprehensive error metrics."""
-    return {
-        "mse": mean_squared_error(y_true, y_pred),
-        "rmse": np.sqrt(mean_squared_error(y_true, y_pred)),
-        "mae": mean_absolute_error(y_true, y_pred),
-        "mape": mean_absolute_percentage_error(y_true, y_pred),
-        "mean_error": np.mean(y_true - y_pred),
-        "std_error": np.std(y_true - y_pred),
-    }
+    return {'mse': mean_squared_error(y_true, y_pred), 'rmse': np.sqrt(mean_squared_error(y_true, y_pred)), 'mae': mean_absolute_error(y_true, y_pred), 'mape': mean_absolute_percentage_error(y_true, y_pred), 'mean_error': np.mean(y_true - y_pred), 'std_error': np.std(y_true - y_pred)}
 
-
-def plot_error_analysis(
-    y_true: np.ndarray,
-    y_pred: np.ndarray,
-    title: str,
-    output_path: Path,
-    plot: bool = False,
-):
+def plot_error_analysis(y_true: np.ndarray, y_pred: np.ndarray, title: str, output_path: Path, plot: bool=False):
     """Plot error analysis"""
     if not plot:
         return
-
     fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
-
-    axes[0].plot(y_true, label="Actual", color="#4A90A4", linewidth=1.2)
-    axes[0].plot(y_pred, label="Predicted", color="#D4A574", linewidth=1.2)
-    axes[0].set_ylabel("Value")
-    axes[0].legend(loc="best")
-
+    axes[0].plot(y_true, label='Actual', color='#4A90A4', linewidth=1.2)
+    axes[0].plot(y_pred, label='Predicted', color='#D4A574', linewidth=1.2)
+    axes[0].set_ylabel('Value')
+    axes[0].legend(loc='best')
     errors = y_true - y_pred
-    axes[1].plot(errors, color="#8B6F9E", linewidth=1.2)
-    axes[1].axhline(0, color="k", linestyle="--", linewidth=0.8)
-    axes[1].set_xlabel("Time")
-    axes[1].set_ylabel("Error")
-
+    axes[1].plot(errors, color='#8B6F9E', linewidth=1.2)
+    axes[1].axhline(0, color='k', linestyle='--', linewidth=0.8)
+    axes[1].set_xlabel('Time')
+    axes[1].set_ylabel('Error')
     plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches="tight", facecolor="white")
+    plt.savefig(output_path, dpi=100, bbox_inches='tight', facecolor='white')
     plt.close()
